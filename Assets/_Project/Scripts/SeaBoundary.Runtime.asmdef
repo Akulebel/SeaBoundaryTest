@@ -1,0 +1,6 @@
+{
+  "name": "SeaBoundary.Runtime",
+  "rootNamespace": "SeaBoundary",
+  "references": ["Unity.InputSystem", "Unity.ugui"],
+  "autoReferenced": true
+}

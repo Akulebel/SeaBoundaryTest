@@ -1,0 +1,10 @@
+{
+  "name": "SeaBoundary.PlayTests",
+  "rootNamespace": "SeaBoundary.Tests",
+  "references": ["SeaBoundary.Runtime", "Unity.ugui", "Unity.InputSystem"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}

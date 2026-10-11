@@ -1,0 +1,11 @@
+{
+  "name": "SeaBoundary.Tests",
+  "rootNamespace": "SeaBoundary.Tests",
+  "references": ["SeaBoundary.Runtime"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"]
+}

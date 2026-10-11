@@ -1,0 +1,33 @@
+# Unity-generated data
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Local editor and IDE state
+[Uu]ser[Ss]ettings/
+.agents/
+.codex/
+/Assets/Plugins/
+/Assets/Plugins.meta
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.unityproj
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep Unity .meta files alongside assets.
