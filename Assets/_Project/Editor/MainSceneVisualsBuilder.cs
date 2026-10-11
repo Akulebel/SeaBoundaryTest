@@ -19,10 +19,11 @@ namespace SeaBoundary.Editor
             new Vector2(0.62f, -1.90f)
         };
 
-        public static void BuildWater(Material material)
+        public static void BuildWater(Material material, Transform parent)
         {
             var water = GameObject.CreatePrimitive(PrimitiveType.Plane);
             water.name = "Water";
+            water.transform.SetParent(parent, false);
             water.transform.localScale = new Vector3(8f, 1f, 8f);
             var renderer = water.GetComponent<MeshRenderer>();
             material.SetTexture("_BaseMap", SeaTexture());

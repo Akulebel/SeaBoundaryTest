@@ -29,6 +29,8 @@ namespace SeaBoundary.Editor
             var fogPreset = Preset("Fog", 0.7f, 0.06f, 0.8f);
 
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            var interactiveObjects = new GameObject("Interactive objects").transform;
+            var nonInteractiveObjects = new GameObject("Non-interactive").transform;
             var waterMat = Material("Water", Color.white, false);
             var hullMat = Material("Hull", new Color(0.38f, 0.19f, 0.11f), false);
             var deckMat = Material("Deck", new Color(0.71f, 0.48f, 0.27f), false);
@@ -39,7 +41,7 @@ namespace SeaBoundary.Editor
             var glassMat = Material("CabinGlass", new Color(0.11f, 0.32f, 0.39f), false);
             var borderMat = Material("Boundary", new Color(1f, 0.75f, 0.18f), true);
 
-            MainSceneVisualsBuilder.BuildWater(waterMat);
+            MainSceneVisualsBuilder.BuildWater(waterMat, nonInteractiveObjects);
 
             var ship = new GameObject("Ship");
             ship.SetActive(false);
@@ -53,6 +55,7 @@ namespace SeaBoundary.Editor
             ship.SetActive(true);
 
             var boundaryObject = new GameObject("LocationBoundary");
+            boundaryObject.transform.SetParent(nonInteractiveObjects, false);
             boundaryObject.SetActive(false);
             var line = boundaryObject.AddComponent<LineRenderer>();
             line.sharedMaterial = borderMat;
@@ -67,9 +70,11 @@ namespace SeaBoundary.Editor
             boundary.RefreshVisual();
 
             var windObject = new GameObject("WindState");
+            windObject.transform.SetParent(interactiveObjects, false);
             var wind = windObject.AddComponent<WindState>();
 
             var weatherObject = new GameObject("WeatherPresetResolver");
+            weatherObject.transform.SetParent(interactiveObjects, false);
             weatherObject.SetActive(false);
             var weather = weatherObject.AddComponent<WeatherPresetResolver>();
             Set(weather, "clear", clearPreset);
@@ -79,6 +84,7 @@ namespace SeaBoundary.Editor
             weatherObject.SetActive(true);
 
             var weatherWindObject = new GameObject("WeatherWindApplier");
+            weatherWindObject.transform.SetParent(nonInteractiveObjects, false);
             weatherWindObject.SetActive(false);
             var weatherWind = weatherWindObject.AddComponent<WeatherWindApplier>();
             Set(weatherWind, "resolver", weather);
@@ -86,6 +92,7 @@ namespace SeaBoundary.Editor
             weatherWindObject.SetActive(true);
 
             var sailWindObject = new GameObject("FixedSailWind");
+            sailWindObject.transform.SetParent(nonInteractiveObjects, false);
             sailWindObject.SetActive(false);
             var sailWind = sailWindObject.AddComponent<FixedSailWind>();
             Set(sailWind, "ship", ship.transform);
@@ -93,6 +100,7 @@ namespace SeaBoundary.Editor
             sailWindObject.SetActive(true);
 
             var exitObject = new GameObject("LocationExit");
+            exitObject.transform.SetParent(nonInteractiveObjects, false);
             exitObject.SetActive(false);
             var exit = exitObject.AddComponent<LocationExitController>();
             Set(exit, "ship", ship.transform);
@@ -112,12 +120,14 @@ namespace SeaBoundary.Editor
             cameraObject.transform.LookAt(new Vector3(0f, 0f, 0f));
 
             var lightObject = new GameObject("Sun");
+            lightObject.transform.SetParent(nonInteractiveObjects, false);
             var light = lightObject.AddComponent<Light>();
             light.type = LightType.Directional;
             light.intensity = 1.5f;
             lightObject.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
 
             var environmentObject = new GameObject("WeatherEnvironmentApplier");
+            environmentObject.transform.SetParent(nonInteractiveObjects, false);
             environmentObject.SetActive(false);
             var environment = environmentObject.AddComponent<WeatherEnvironmentApplier>();
             Set(environment, "resolver", weather);

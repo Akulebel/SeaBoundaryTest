@@ -7,11 +7,13 @@
 1. Откройте папку проекта в Unity **6000.4.5f1**.
 2. Откройте `Assets/_Project/Scenes/MainScene.unity` и нажмите **Play**. Сцена также добавлена в Build Settings.
 
-`W`/`S` управляют ходом, `A`/`D` поворачивают корабль; работают и стрелки. Во время Play параметры ветра можно менять на объекте `WindState`, а погоду (`Clear`, `Rain`, `Storm`, `Fog`) — через поле `State` объекта `WeatherPresetResolver`. При выходе корабля за жёлтую границу после короткой задержки появляется предупреждение с обратным отсчётом.
+`W`/`S` управляют ходом, `A`/`D` поворачивают корабль; работают и стрелки. При выходе корабля за жёлтую границу после короткой задержки появляется предупреждение с обратным отсчётом.
+
+Чтобы менять условия во время Play, раскройте в Hierarchy группу **Interactive objects**. Выберите `WindState` и измените `Azimuth` или `Strength` в Inspector. Для смены погоды выберите `WeatherPresetResolver` и установите `State`: `Clear`, `Rain`, `Storm` или `Fog`. Группа **Non-interactive** содержит служебные объекты сцены; для управления демонстрацией открывать их не нужно.
 
 ## Структура
 
-- `Assets/_Project/Scenes/MainScene.unity` — основная сцена.
+- `Assets/_Project/Scenes/MainScene.unity` — основная сцена с группами `Interactive objects` и `Non-interactive` в Hierarchy.
 - `Assets/_Project/Scripts` — управление кораблём, расчёт ветра, погода, проверка границы и UI. Логика отсчёта выхода вынесена в `ExitCountdown` и не зависит от сцены.
 - `Assets/_Project/Presets` — параметры четырёх погодных состояний.
 - `Assets/_Project/Editor` — команда **Sea Boundary → Rebuild Main Scene** для пересборки сцены.
